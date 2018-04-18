@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随导航移动</title>
+    <script src="jquery-1.11.3.min.js"></script>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    ul, li {
+        list-style: none;
+    }
+    .main {
+        position: relative;
+        margin: 500px auto;
+        height: 150px;
+        width: 1250px;
+    }
+    .moveul li {
+        float: left;
+        width: 250px;
+        height: 150px;
+        line-height: 150px;
+        color:#ffffff;
+        background-color: #ffcccc;
+        text-align: center;
+        font-size: 16px;;
+        cursor: pointer;
+    }
+    #slidebar {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 250px;
+        background: #993300;
+        transition: all .5s;
+    }
+    /*.moveul li:nth-child(1) {*/
+        /*color: #993300;*/
+    /*}*/
+    .moveul li.list {
+        color: #993300;
+        transition: color .5s;
+    }
+</style>
+<body>
+<div class="main">
+    <ul class="moveul">
+        <li class="list">首页</li>
+        <li>新闻</li>
+        <li>体育</li>
+        <li>财经</li>
+        <li>NBA</li>
+    </ul>
+    <div id="slidebar"></div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".moveul li").mouseover(function () {
+            var list = $(this).index();
+            $('#slidebar').css({
+                left: 250 * list + 'px'
+            });
+            $(this).addClass('list');
+        }).mouseleave(function () {
+            $('#slidebar').css({
+                left: '0'
+            });
+            $(this).removeClass('list');
+        });
+
+    })
+</script>
+</body>
+</html>
